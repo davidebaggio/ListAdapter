@@ -20,6 +20,15 @@ public class ListAdapter implements HList {
 		this.supportOptional = supportOptional;
 	}
 
+	public ListAdapter(boolean supportOptional, HCollection coll) {
+		this.supportOptional = supportOptional;
+		this.list = new Vector(coll.size());
+		Object[] elements = coll.toArray();
+		for (Object object : elements) {
+			this.list.addElement(object);
+		}
+	}
+
 	@Override
 	public boolean add(Object o)
 			throws UnsupportedOperationException, ClassCastException, NullPointerException, IllegalArgumentException {
@@ -274,6 +283,8 @@ public class ListAdapter implements HList {
 
 	@Override
 	public HListIterator hListIterator(int index) throws IndexOutOfBoundsException {
+		if (index < 0 || index > this.size())
+			throw new IndexOutOfBoundsException();
 		return new IteratorAdapter(HIteratorState.IDLE, true, this, index);
 	}
 
@@ -298,7 +309,7 @@ public class ListAdapter implements HList {
 
 		if (element == null)
 			throw new NullPointerException();
-		if (index < 0 || index > this.size())
+		if (index < 0 || index >= this.size())
 			throw new IndexOutOfBoundsException();
 
 		Object o = this.get(index);

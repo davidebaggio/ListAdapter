@@ -42,7 +42,7 @@ public class IteratorAdapter implements HListIterator {
 	public void remove() throws UnsupportedOperationException, IllegalStateException {
 		if (!this.supportOptional)
 			throw new UnsupportedOperationException();
-		if (this.state == HIteratorState.HAS_REMOVED)
+		if (this.state == HIteratorState.HAS_REMOVED || this.state == HIteratorState.IDLE)
 			throw new IllegalStateException();
 
 		this.hList.remove(this.index);
