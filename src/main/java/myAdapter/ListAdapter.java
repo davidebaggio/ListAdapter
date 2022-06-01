@@ -206,7 +206,7 @@ public class ListAdapter implements HList {
 	@Override
 	public void add(int index, Object element) throws UnsupportedOperationException, ClassCastException,
 			NullPointerException, IllegalArgumentException, IndexOutOfBoundsException {
-		if (!supportOptional)
+		if (!this.supportOptional)
 			throw new UnsupportedOperationException();
 
 		// TODO implementare ClassCastException
@@ -222,7 +222,7 @@ public class ListAdapter implements HList {
 	@Override
 	public boolean addAll(int index, HCollection o) throws UnsupportedOperationException, ClassCastException,
 			NullPointerException, IllegalArgumentException, IndexOutOfBoundsException {
-		if (!supportOptional)
+		if (!this.supportOptional)
 			throw new UnsupportedOperationException();
 
 		// TODO implementare ClassCastException
@@ -269,20 +269,23 @@ public class ListAdapter implements HList {
 
 	@Override
 	public HListIterator hListIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new IteratorAdapter(HIteratorState.IDLE, true, this);
 	}
 
 	@Override
 	public HListIterator hListIterator(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		return new IteratorAdapter(HIteratorState.IDLE, true, this, index);
 	}
 
 	@Override
 	public Object remove(int index) throws UnsupportedOperationException, IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		if (!this.supportOptional)
+			throw new UnsupportedOperationException();
+
+		if (index < 0 || index > this.size())
+			throw new IndexOutOfBoundsException();
+
+		return this.remove(index);
 	}
 
 	@Override
