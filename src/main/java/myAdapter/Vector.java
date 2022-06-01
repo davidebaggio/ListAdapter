@@ -141,7 +141,7 @@ public class Vector {
 	 * 
 	 * @param obj
 	 * @param index
-	 * @throws ArrayIndexOutOfBoundsException
+	 * @throws
 	 */
 	public void insertElementAt(Object obj, int index) throws ArrayIndexOutOfBoundsException {
 		this.vector.insertElementAt(obj, index);

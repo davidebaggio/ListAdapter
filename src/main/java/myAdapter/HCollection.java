@@ -205,7 +205,7 @@ public interface HCollection {
 	 * collection.
 	 * 
 	 * @param h
-	 * @return
+	 * @return true if the dimension of the list changes.
 	 * @throws UnsupportedOperationException - if the retainAll method is not
 	 *                                       supported by this Collection.
 	 * 
