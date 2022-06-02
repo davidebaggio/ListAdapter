@@ -25,7 +25,7 @@ public class IteratorAdapter implements HListIterator {
 
 	@Override
 	public boolean hasNext() {
-		return this.index < this.hList.size() - 1;
+		return this.index < this.hList.size();
 	}
 
 	@Override
@@ -45,8 +45,17 @@ public class IteratorAdapter implements HListIterator {
 		if (this.state == HIteratorState.HAS_REMOVED || this.state == HIteratorState.IDLE)
 			throw new IllegalStateException();
 
-		this.hList.remove(this.index);
-		this.state = HIteratorState.HAS_REMOVED;
+		if (this.state == HIteratorState.HAS_GONE_NEXT) {
+			this.previous();
+			this.hList.remove(this.index);
+			this.state = HIteratorState.HAS_REMOVED;
+			return;
+		}
+		if (this.state == HIteratorState.HAS_GONE_PREV) {
+			this.hList.remove(this.index);
+			this.state = HIteratorState.HAS_REMOVED;
+			return;
+		}
 	}
 
 	@Override

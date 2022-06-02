@@ -37,9 +37,11 @@ public class ListAdapter implements HList {
 
 		// TODO implementare ClassCastException
 
-		if (o == null)
-			throw new NullPointerException();
-
+		// TODO null implementagtion
+		/*
+		 * if (o == null)
+		 * throw new NullPointerException();
+		 */
 		if (this.contains(o))
 			return false;
 		this.list.addElement(o);
@@ -80,9 +82,11 @@ public class ListAdapter implements HList {
 
 	@Override
 	public boolean contains(Object o) throws ClassCastException, NullPointerException {
-		if (o == null)
-			throw new NullPointerException();
-
+		// TODO null implementation
+		/*
+		 * if (o == null)
+		 * throw new NullPointerException();
+		 */
 		// TODO implementare ClassCastException
 
 		return this.list.contains(o);
@@ -110,8 +114,7 @@ public class ListAdapter implements HList {
 
 	@Override
 	public HIterator hIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new IteratorAdapter(HIteratorState.IDLE, true, this);
 	}
 
 	@Override
@@ -220,8 +223,11 @@ public class ListAdapter implements HList {
 
 		// TODO implementare ClassCastException
 
-		if (element == null)
-			throw new NullPointerException();
+		// TODO null implementation
+		/*
+		 * if (element == null)
+		 * throw new NullPointerException();
+		 */
 		if (index < 0 || index > this.size())
 			throw new IndexOutOfBoundsException();
 
@@ -253,6 +259,8 @@ public class ListAdapter implements HList {
 
 	@Override
 	public Object get(int index) throws IndexOutOfBoundsException {
+		if (index < 0 || index >= this.size())
+			throw new IndexOutOfBoundsException();
 		return this.list.elementAt(index);
 	}
 
@@ -293,10 +301,12 @@ public class ListAdapter implements HList {
 		if (!this.supportOptional)
 			throw new UnsupportedOperationException();
 
-		if (index < 0 || index > this.size())
+		if (index < 0 || index >= this.size())
 			throw new IndexOutOfBoundsException();
 
-		return this.remove(index);
+		Object obj = this.get(index);
+		this.list.removeElementAt(index);
+		return obj;
 	}
 
 	@Override
@@ -319,7 +329,7 @@ public class ListAdapter implements HList {
 
 	@Override
 	public HList subHList(int fromIndex, int toIndex) throws IndexOutOfBoundsException {
-		if (fromIndex >= toIndex || fromIndex < 0 || toIndex > this.size())
+		if (fromIndex > toIndex || fromIndex < 0 || toIndex > this.size())
 			throw new IndexOutOfBoundsException();
 
 		HList sub = new ListAdapter(true);
@@ -329,6 +339,33 @@ public class ListAdapter implements HList {
 		}
 
 		return sub;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this.getClass() != obj.getClass())
+			return false;
+		if (this.size() != ((ListAdapter) obj).size())
+			return false;
+		Object[] arr1 = this.toArray();
+		Object[] arr2 = ((ListAdapter) obj).toArray();
+		for (int i = 0; i < arr1.length; i++) {
+			if (arr1[i] != arr2[i])
+				return false;
+		}
+		return true;
+	}
+
+	// s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
+	@Override
+	public int hashCode() {
+		Object[] arr = this.toArray();
+		int n = 0;
+		for (int i = 0; i < arr.length; i++) {
+			n += (Integer) arr[i] * Math.pow(31, arr.length - (i + 1));
+		}
+
+		return n;
 	}
 
 }
