@@ -2,6 +2,16 @@ package myAdapter;
 
 import java.util.NoSuchElementException;
 
+/**
+ * An iterator for lists that allows the programmer to traverse the list in
+ * either direction, modify the list during iteration, and obtain the iterator's
+ * current position in the list. A ListIterator has no current element; its
+ * cursor position always lies between the element that would be returned by a
+ * call to previous() and the element that would be returned by a call to
+ * next(). In a list of length n, there are n+1 valid index values, from 0 to n,
+ * inclusive.
+ * 
+ */
 public interface HListIterator extends HIterator {
 
 	/**
@@ -14,7 +24,7 @@ public interface HListIterator extends HIterator {
 	 * previous would return the new element. (This call increases by one the value
 	 * that would be returned by a call to nextIndex or previousIndex.)
 	 * 
-	 * @param o
+	 * @param o - object to add
 	 * @throws UnsupportedOperationException - if the add method is not supported by
 	 *                                       this list iterator.
 	 * @throws ClassCastException            - if the class of the specified element
@@ -28,6 +38,7 @@ public interface HListIterator extends HIterator {
 	void add(Object o) throws UnsupportedOperationException, ClassCastException, IllegalArgumentException;
 
 	/**
+	 * Check if the HListIterator has another element before him
 	 * 
 	 * @return true if the list iterator has more elements when traversing the list
 	 *         in the reverse direction.
@@ -35,6 +46,7 @@ public interface HListIterator extends HIterator {
 	boolean hasPrevious();
 
 	/**
+	 * Provides the index of the element in his position
 	 * 
 	 * @return the index of the element that would be returned by a subsequent call
 	 *         to next, or list size if list iterator is at end of list.
@@ -53,6 +65,7 @@ public interface HListIterator extends HIterator {
 	Object previous() throws NoSuchElementException;
 
 	/**
+	 * Provides the index of the element before him
 	 * 
 	 * @return the index of the element that would be returned by a subsequent call
 	 *         to previous, or -1 if list iterator is at beginning of list.
@@ -65,7 +78,7 @@ public interface HListIterator extends HIterator {
 	 * ListIterator.remove nor ListIterator.add have been called after the last call
 	 * to next or previous.
 	 * 
-	 * @param o
+	 * @param o - object to set
 	 * @throws UnsupportedOperationException - if the set operation is not supported
 	 *                                       by this list iterator.
 	 * 

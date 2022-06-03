@@ -3,17 +3,11 @@ package myTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import myAdapter.HCollection;
-import myAdapter.HIterator;
-import myAdapter.HList;
-import myAdapter.HListIterator;
-import myAdapter.ListAdapter;
+import myAdapter.*;
 
-//import java.util.NoSuchElementException;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Test class of {@link myAdapter.ListAdapter} methods
@@ -594,8 +588,8 @@ public class ListTest {
         assertFalse(coll.remove(1));
         assertTrue(coll.remove(2));
         // assertTrue(coll.remove(null));
-        assertEquals(1, coll.size());
-        assertArrayEquals(new Object[] { 3 }, coll.toArray());
+        assertEquals(2, coll.size());
+        assertArrayEquals(new Object[] { 3, 2 }, coll.toArray());
 
     }
 
@@ -792,11 +786,11 @@ public class ListTest {
 
         testColl.add(5);
         assertFalse(coll.removeAll(testColl));
-        assertArrayEquals(new Object[] { 1, 2, 3 }, coll.toArray());
+        assertArrayEquals(new Object[] { 1, 2, 3, 2 }, coll.toArray());
 
         testColl.add(2);
         coll.removeAll(testColl);
-        assertArrayEquals(new Object[] { 1, 3 }, coll.toArray());
+        assertArrayEquals(new Object[] { 1, 3, 2 }, coll.toArray());
     }
 
     /**
@@ -1183,7 +1177,7 @@ public class ListTest {
         }
 
         assertEquals(5, list2.size());
-        assertEquals(1, list.size());
+        assertEquals(5, list.size());
     }
 
     /**
@@ -1411,7 +1405,7 @@ public class ListTest {
         list.add(5);
 
         assertEquals(1, list.lastIndexOf(2));
-        assertEquals(0, list.lastIndexOf(1));
+        assertEquals(3, list.lastIndexOf(1));
         assertEquals(-1, list.lastIndexOf(6));
     }
 

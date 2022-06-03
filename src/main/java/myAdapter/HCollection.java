@@ -1,5 +1,14 @@
 package myAdapter;
 
+/**
+ * The collection interface at the root of all data structure interfaces. A
+ * collection represents a group of objects, known as its elements. Some
+ * collections allow duplicate elements and others do not. Some are ordered and
+ * others unordered. The SDK does not provide any direct implementations of this
+ * interface: it provides implementations of more specific subinterfaces like
+ * Set and List. This interface is typically used to pass collections around and
+ * manipulate them where maximum generality is desired.
+ */
 public interface HCollection {
 
 	/**
@@ -18,7 +27,7 @@ public interface HCollection {
 	 * returning false). This preserves the invariant that a collection always
 	 * contains the specified element after this call returns.
 	 * 
-	 * @param o
+	 * @param o - Object to add
 	 * @return true if this collection changed as a result of the call
 	 * 
 	 * @throws UnsupportedOperationException - add is not supported by this
@@ -45,7 +54,7 @@ public interface HCollection {
 	 * implies that the behavior of this call is undefined if the specified
 	 * collection is this collection, and this collection is nonempty.)
 	 * 
-	 * @param h
+	 * @param h - HCollection to add
 	 * @return true if this collection changed as a result of the call
 	 * 
 	 * @throws UnsupportedOperationException - if this collection does not support
@@ -83,8 +92,9 @@ public interface HCollection {
 	void clear() throws UnsupportedOperationException;
 
 	/**
+	 * Search an object in the Collection
 	 * 
-	 * @param o
+	 * @param o - Object to search
 	 * @return true if this collection contains the specified element
 	 * 
 	 * @throws ClassCastException   - if the type of the specified element is
@@ -98,8 +108,9 @@ public interface HCollection {
 	boolean contains(Object o) throws ClassCastException, NullPointerException;
 
 	/**
+	 * Search all the given object in the collection
 	 * 
-	 * @param h
+	 * @param h - HCollection to search
 	 * @return true if this collection contains all of the elements in the specified
 	 *         collection
 	 * 
@@ -118,7 +129,7 @@ public interface HCollection {
 	/**
 	 * Compares the specified object with this collection for equality.
 	 * 
-	 * @param o
+	 * @param o - Object to compare
 	 * @return Compares the specified object with this collection for equality.
 	 * 
 	 */
@@ -133,17 +144,19 @@ public interface HCollection {
 	 * Object.hashCodemethod. In particular, c1.equals(c2) implies that
 	 * c1.hashCode()==c2.hashCode().
 	 * 
-	 * @return
+	 * @return the hash code
 	 */
 	int hashCode();
 
 	/**
+	 * Check if the collection is empty.
 	 * 
 	 * @return true if this collection has no elements, otherwise false
 	 */
 	boolean isEmpty();
 
 	/**
+	 * Provides an HIterator of the Collection
 	 * 
 	 * @return an iterator over the element in this collection
 	 */
@@ -153,12 +166,13 @@ public interface HCollection {
 	 * Removes a single instance of the specified element from this collection, if
 	 * it is present (optional operation). More formally, removes an element e such
 	 * that (o==null ? e==null : o.equals(e)), if this collection contains one or
-	 * more such elements. Returns true if this collection contained the specified
-	 * element (or equivalently, if this collection changed as a result of the
-	 * call).
+	 * more such elements.
 	 * 
-	 * @param o
-	 * @return
+	 * @param o - Object to remove
+	 * @return true if this collection contained the specified
+	 *         element (or equivalently, if this collection changed as a result of
+	 *         the
+	 *         call).
 	 * @throws ClassCastException            - if the type of the specified element
 	 *                                       is incompatible with this collection
 	 *                                       (optional).
@@ -178,7 +192,7 @@ public interface HCollection {
 	 * specified collection (optional operation). After this call returns, this
 	 * collection will contain no elements in common with the specified collection.
 	 * 
-	 * @param h
+	 * @param h - HCollection to remove
 	 * @return true if this collection changed as a result of the call
 	 * 
 	 * @throws UnsupportedOperationException - if the removeAll method is not
@@ -204,7 +218,7 @@ public interface HCollection {
 	 * collection all of its elements that are not contained in the specified
 	 * collection.
 	 * 
-	 * @param h
+	 * @param h - HCollection to retain.
 	 * @return true if the dimension of the list changes.
 	 * @throws UnsupportedOperationException - if the retainAll method is not
 	 *                                       supported by this Collection.
@@ -224,8 +238,9 @@ public interface HCollection {
 	boolean retainAll(HCollection h) throws UnsupportedOperationException, ClassCastException, NullPointerException;
 
 	/**
+	 * Provides the size of the collection
 	 * 
-	 * @return return the number of elements in this collections. If it si grater
+	 * @return the number of elements in this collections. If it si grater
 	 *         than Integer.MAX_VALUE returns Integer.MAX_VALUE
 	 */
 	int size();
@@ -251,8 +266,9 @@ public interface HCollection {
 	 * new array is allocated with the runtime type of the specified array and the
 	 * size of this collection.
 	 * 
-	 * @param a
-	 * @return
+	 * @param a - runtime type of array to store elements
+	 * @return an array containing all of the elements in this collection with the
+	 *         array having the same runtime type of the given array
 	 * @throws ArrayStoreException  - the runtime type of the specified array is not
 	 *                              a supertype of the runtime type of every element
 	 *                              in this collection.

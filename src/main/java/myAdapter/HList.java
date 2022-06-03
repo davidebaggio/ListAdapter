@@ -1,14 +1,19 @@
 package myAdapter;
 
+/**
+ * A collection (also known as a sequence). The user of this interface
+ * has precise control over where in the list each element is inserted. The user
+ * can access elements by their integer index (position in the list), and search
+ * for elements in the list.
+ */
 public interface HList extends HCollection {
-
 	/**
 	 * Inserts the specified element at the specified position in this list
 	 * (optional operation). Shifts the element currently at that position (if any)
 	 * and any subsequent elements to the right (adds one to their indices).
 	 * 
-	 * @param index
-	 * @param element
+	 * @param index   - specific index to add a new element
+	 * @param element - element to add
 	 * @throws UnsupportedOperationException - if the addAll method is not supported
 	 *                                       by this list.
 	 * 
@@ -25,7 +30,8 @@ public interface HList extends HCollection {
 	 *                                       the specified collection prevents it
 	 *                                       from being added to this list.
 	 * 
-	 * @throws IndexOutOfBoundsException     - if the index is out of range (index <
+	 * @throws IndexOutOfBoundsException     - if the index is out of range
+	 *                                       (index <
 	 *                                       0 || index > size()).
 	 * 
 	 */
@@ -42,8 +48,8 @@ public interface HList extends HCollection {
 	 * operation is in progress. (Note that this will occur if the specified
 	 * collection is this list, and it's nonempty.)
 	 * 
-	 * @param index
-	 * @param o
+	 * @param index - specific index to add a new HCollection
+	 * @param o     - HCollection to add
 	 * @return true if this list changed as a result of the call.
 	 * 
 	 * @throws UnsupportedOperationException - if the addAll method is not supported
@@ -62,7 +68,8 @@ public interface HList extends HCollection {
 	 *                                       the specified collection prevents it
 	 *                                       from being added to this list.
 	 * 
-	 * @throws IndexOutOfBoundsException     - if the index is out of range (index <
+	 * @throws IndexOutOfBoundsException     - if the index is out of range
+	 *                                       (index <
 	 *                                       0 || index > size()).
 	 * 
 	 */
@@ -70,9 +77,10 @@ public interface HList extends HCollection {
 			NullPointerException, IllegalArgumentException, IndexOutOfBoundsException;
 
 	/**
+	 * Provides the element at a given position.
 	 * 
-	 * @param index
-	 * @return true if this list changed as a result of the call.
+	 * @param index - of the object to return
+	 * @return the object present in the given index
 	 * 
 	 * @throws IndexOutOfBoundsException - if the index is out of range (index < 0
 	 *                                   || index >= size()).
@@ -86,7 +94,7 @@ public interface HList extends HCollection {
 	 * returns the lowest index i such that (o==null ? get(i)==null :
 	 * o.equals(get(i))), or -1 if there is no such index.
 	 * 
-	 * @param o
+	 * @param o - Object to find in the HList
 	 * @return the index in this list of the first occurrence of the specified
 	 *         element, or -1 if this list does not contain this element.
 	 * 
@@ -106,7 +114,7 @@ public interface HList extends HCollection {
 	 * o.equals(get(i))), or -1 if there is no such index.
 	 * 
 	 * 
-	 * @param o
+	 * @param o - Object to find in the HList
 	 * @return the index in this list of the last occurrence of the specified
 	 *         element, or -1 if this list does not contain this element.
 	 * 
@@ -120,6 +128,7 @@ public interface HList extends HCollection {
 	int lastIndexOf(Object o) throws ClassCastException, NullPointerException;
 
 	/**
+	 * Provides an HListIterator of the HList
 	 * 
 	 * @return a list iterator of the elements in this list (in proper sequence).
 	 * 
@@ -133,7 +142,7 @@ public interface HList extends HCollection {
 	 * next method. An initial call to the previous method would return the element
 	 * with the specified index minus one.
 	 * 
-	 * @param index
+	 * @param index - starting index of the returned HListIterator
 	 * @return a list iterator of the elements in this list (in proper sequence),
 	 *         starting at the specified position in this list.
 	 * 
@@ -148,12 +157,13 @@ public interface HList extends HCollection {
 	 * operation). Shifts any subsequent elements to the left (subtracts one from
 	 * their indices). Returns the element that was removed from the list.
 	 * 
-	 * @param index
-	 * @return
+	 * @param index - of the object to remove
+	 * @return the removed object
 	 * @throws UnsupportedOperationException - if the remove method is not supported
 	 *                                       by this list.
 	 * 
-	 * @throws IndexOutOfBoundsException     - if the index is out of range (index <
+	 * @throws IndexOutOfBoundsException     - if the index is out of range
+	 *                                       (index <
 	 *                                       0 || index >= size()).
 	 * 
 	 */
@@ -163,8 +173,8 @@ public interface HList extends HCollection {
 	 * Replaces the element at the specified position in this list with the
 	 * specified element (optional operation).
 	 * 
-	 * @param index
-	 * @param element
+	 * @param index   - of the element to set
+	 * @param element - to set
 	 * @return the element previously at the specified position.
 	 * 
 	 * @throws UnsupportedOperationException - if the addAll method is not supported
@@ -183,7 +193,8 @@ public interface HList extends HCollection {
 	 *                                       the specified collection prevents it
 	 *                                       from being added to this list.
 	 * 
-	 * @throws IndexOutOfBoundsException     - if the index is out of range (index <
+	 * @throws IndexOutOfBoundsException     - if the index is out of range
+	 *                                       (index <
 	 *                                       0 || index > size()).
 	 * 
 	 */
@@ -198,9 +209,9 @@ public interface HList extends HCollection {
 	 * vice-versa. The returned list supports all of the optional list operations
 	 * supported by this list.
 	 * 
-	 * @param fromIndex
-	 * @param toIndex
-	 * @return
+	 * @param fromIndex - starting point of the subList
+	 * @param toIndex   - ending point of the subList
+	 * @return the subHList
 	 * @throws IndexOutOfBoundsException - for an illegal endpoint index value
 	 *                                   (fromIndex < 0 || toIndex > size ||
 	 *                                   fromIndex > toIndex).

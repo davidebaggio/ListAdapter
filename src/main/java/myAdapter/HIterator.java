@@ -2,15 +2,21 @@ package myAdapter;
 
 import java.util.NoSuchElementException;
 
+/**
+ * An iterator over a collection. Iterator takes the place of Enumeration in the
+ * Java collections framework.
+ */
 public interface HIterator {
 
 	/**
+	 * Check if the HIterator has another element in his position
 	 * 
 	 * @return true if the iterator has more elements
 	 */
 	boolean hasNext();
 
 	/**
+	 * Provides the element in his position
 	 * 
 	 * @return the next element in the iteration
 	 * @throws NoSuchElementException - Iteration has no more elements

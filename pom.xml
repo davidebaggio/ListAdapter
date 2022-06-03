@@ -8,8 +8,10 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>myAdapter</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <description>
+    This package contains a ListAdapter class which works as an adapter of the interfaces Collector, List, Iterator and ListIterator (J2SE 1.4.2).
+    It uses java.util.Vector as the adaptee (CLDC 1.1).
+  </description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,10 +45,33 @@
             <mainClass>myAdapter.ListAdapter</mainClass>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.4.0</version>
+          <configuration>
+            <reportOutputDirectory>documentation</reportOutputDirectory>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>documentation</directory>
+              </fileset>
+            </filesets>
+          </configuration>
         </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>

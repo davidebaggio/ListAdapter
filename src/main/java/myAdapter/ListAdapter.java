@@ -1,25 +1,60 @@
 package myAdapter;
 
+/**
+ * ListAdapter is a class that contains all the methods of the J2RE 1.4.2
+ * Collections and List interfaces (Optional included).
+ * Basically it is an adapter to these interfaces and uses java.util.Vector
+ * {https://docs.oracle.com/javame/config/cldc/ref-impl/cldc1.1/jsr139/index.html}
+ * of CLDC 1.1.
+ * This class implements {@link myAdapter.HCollection} and
+ * {@link myAdapter.HList} interfaces
+ * 
+ * This list does not support insertion of null elements
+ */
 public class ListAdapter implements HList {
 
 	private Vector list;
 	private boolean supportOptional;
 
+	/**
+	 * Constructor for ListAdapter
+	 * 
+	 * @param supportOptional - true if this List support optional operations
+	 */
 	public ListAdapter(boolean supportOptional) {
 		list = new Vector();
 		this.supportOptional = supportOptional;
 	}
 
+	/**
+	 * Constructor for ListAdapter
+	 * 
+	 * @param supportOptional - true if this List support optional operations
+	 * @param initialSize     - initial size of the list
+	 */
 	public ListAdapter(boolean supportOptional, int initialSize) {
 		list = new Vector(initialSize);
 		this.supportOptional = supportOptional;
 	}
 
+	/**
+	 * Constructor for ListAdapter
+	 * 
+	 * @param supportOptional  - true if this List support optional operations
+	 * @param initialSize      - initial size of the list
+	 * @param capacityIncrease - increase value
+	 */
 	public ListAdapter(boolean supportOptional, int initialSize, int capacityIncrease) {
 		list = new Vector(initialSize, capacityIncrease);
 		this.supportOptional = supportOptional;
 	}
 
+	/**
+	 * Copy constructor
+	 * 
+	 * @param supportOptional - true if this List support optional operations
+	 * @param coll            - Collection to copy
+	 */
 	public ListAdapter(boolean supportOptional, HCollection coll) {
 		this.supportOptional = supportOptional;
 		this.list = new Vector(coll.size());
@@ -41,8 +76,6 @@ public class ListAdapter implements HList {
 		if (o == null)
 			throw new NullPointerException();
 
-		if (this.contains(o))
-			return false;
 		this.list.addElement(o);
 		return true;
 	}
@@ -65,7 +98,7 @@ public class ListAdapter implements HList {
 		}
 		if (n == list.size()) // se la lista non cambia dimensione non ha aggiunto elementi
 			return false;
-		return false;
+		return true;
 	}
 
 	@Override
@@ -113,7 +146,7 @@ public class ListAdapter implements HList {
 
 	@Override
 	public HIterator hIterator() {
-		return new IteratorAdapter(HIteratorState.IDLE, true, this);
+		return new IteratorAdapter(HIteratorState.IDLE, this.supportOptional, this);
 	}
 
 	@Override
@@ -277,14 +310,14 @@ public class ListAdapter implements HList {
 
 	@Override
 	public HListIterator hListIterator() {
-		return new IteratorAdapter(HIteratorState.IDLE, true, this);
+		return new IteratorAdapter(HIteratorState.IDLE, this.supportOptional, this);
 	}
 
 	@Override
 	public HListIterator hListIterator(int index) throws IndexOutOfBoundsException {
 		if (index < 0 || index > this.size())
 			throw new IndexOutOfBoundsException();
-		return new IteratorAdapter(HIteratorState.IDLE, true, this, index);
+		return new IteratorAdapter(HIteratorState.IDLE, this.supportOptional, this, index);
 	}
 
 	@Override

@@ -2,6 +2,11 @@ package myAdapter;
 
 import java.util.NoSuchElementException;
 
+/**
+ * IteratorAdapter class that implements {@link myAdapter.HIterator} and
+ * {@link myAdapter.HListIterator} interfaces.
+ * 
+ */
 public class IteratorAdapter implements HListIterator {
 
 	private HList hList;
@@ -9,6 +14,13 @@ public class IteratorAdapter implements HListIterator {
 	private boolean supportOptional;
 	private HIteratorState state;
 
+	/**
+	 * Iterator constructor
+	 * 
+	 * @param state           - initial state
+	 * @param supportOptional - true if this List support optional operations
+	 * @param hList           - list of the iterator
+	 */
 	public IteratorAdapter(HIteratorState state, boolean supportOptional, HList hList) {
 		this.hList = hList;
 		this.index = 0;
@@ -16,6 +28,14 @@ public class IteratorAdapter implements HListIterator {
 		this.state = state;
 	}
 
+	/**
+	 * Iterator constructor
+	 * 
+	 * @param state           - initial state
+	 * @param supportOptional - true if this List support optional operations
+	 * @param hList           - list of the iterator
+	 * @param index           - starting point of the iterator
+	 */
 	public IteratorAdapter(HIteratorState state, boolean supportOptional, HList hList, int index) {
 		this.hList = hList;
 		this.index = index;

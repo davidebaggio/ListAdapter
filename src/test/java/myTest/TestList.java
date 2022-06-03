@@ -1,12 +1,6 @@
 package myTest;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import myAdapter.HIterator;
-import myAdapter.HList;
-import myAdapter.HListIterator;
-import myAdapter.ListAdapter;
+import myAdapter.*;
 
 import org.junit.*;
 
@@ -94,13 +88,13 @@ public class TestList {
 			l1.add(argv[i]);
 		}
 		iterate(l1.hIterator());
-		assertEquals("List add not working correctly", l1.size(), (prev));
+		assertEquals("List add not working correctly", l1.size(), (prev + argv.length));
 		System.out.println(l1.size());
 		prev = l1.size();
 		for (int i = 0; i < argv.length; i++) {
 			l1.add(argv[i]);
 		}
-		assertEquals("List add not working correctly", l1.size(), prev);
+		assertEquals("List add not working correctly", l1.size(), prev + argv.length);
 		System.out.println(l1.size());
 		iterate(l1.hIterator());
 
