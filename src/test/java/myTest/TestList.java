@@ -1,7 +1,13 @@
-package myAdapter;
+package myTest;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import myAdapter.HIterator;
+import myAdapter.HList;
+import myAdapter.HListIterator;
+import myAdapter.ListAdapter;
+
 import org.junit.*;
 
 import static org.junit.Assert.*;

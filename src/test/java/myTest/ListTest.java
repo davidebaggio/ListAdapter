@@ -1,7 +1,13 @@
-package myAdapter;
+package myTest;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import myAdapter.HCollection;
+import myAdapter.HIterator;
+import myAdapter.HList;
+import myAdapter.HListIterator;
+import myAdapter.ListAdapter;
 
 //import java.util.NoSuchElementException;
 import java.util.NoSuchElementException;
@@ -266,9 +272,9 @@ public class ListTest {
      * <br>
      * Summary:
      * {@link myAdapter.ListAdapter#iterator()},
-     * {@link myAdapter.ListAdapter.IteratorAdapter#hasNext()},
-     * {@link myAdapter.ListAdapter.IteratorAdapter#next()} and
-     * {@link myAdapter.ListAdapter.IteratorAdapter#remove()} methods are tested
+     * {@link myTest.ListAdapter.IteratorAdapter#hasNext()},
+     * {@link myTest.ListAdapter.IteratorAdapter#next()} and
+     * {@link myTest.ListAdapter.IteratorAdapter#remove()} methods are tested
      * <br>
      * <br>
      * Design test: an iterator is created, elements are added to the collection, an
@@ -1534,7 +1540,7 @@ public class ListTest {
 
     /**
      * Test of
-     * {@link myAdapter.ListAdapter.ListIteratorAdapter})
+     * {@link myTest.ListAdapter.ListIteratorAdapter})
      * <p>
      * <br>
      * <br>
