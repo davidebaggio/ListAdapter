@@ -489,11 +489,11 @@ public class ListTest {
         }
 
         array1 = new Object[] { 1, 2, 3 };
-        assertArrayEquals(new Object[] { null, null, null }, coll.toArray(array1));
+        assertArrayEquals(new Object[] { 1, 2, 3 }, coll.toArray(array1));
 
         coll.add(5);
         coll.add(6);
-        assertArrayEquals(new Object[] { 5, 6, null }, coll.toArray(array1));
+        assertArrayEquals(new Object[] { 5, 6, 3 }, coll.toArray(array1));
 
         coll.add(7);
         coll.add(8);
@@ -537,8 +537,6 @@ public class ListTest {
         coll.add(3);
         assertEquals(3, coll.toArray()[0]);
 
-        coll.add(null);
-        assertNull(coll.toArray()[1]);
     }
 
     /**
@@ -645,7 +643,6 @@ public class ListTest {
         coll.add(2);
         coll.add(3);
         coll.add(4);
-        coll.add(null);
 
         HCollection testColl = new ListAdapter(true, coll);
 
@@ -654,7 +651,6 @@ public class ListTest {
         testColl.add(1);
         testColl.add(2);
         testColl.add(3);
-        testColl.add(null);
         assertTrue(coll.containsAll(testColl));
 
         testColl.add(5);
@@ -717,12 +713,10 @@ public class ListTest {
         testColl.add(1);
         testColl.add(2);
         testColl.add(3);
-        coll.add(null);
 
         int collDim = coll.size();
         coll.addAll(testColl);
         assertTrue(coll.containsAll(testColl));
-        assertTrue(coll.contains(null));
         assertEquals(collDim + testColl.size(), coll.size());
     }
 

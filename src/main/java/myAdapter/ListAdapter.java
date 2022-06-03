@@ -37,11 +37,10 @@ public class ListAdapter implements HList {
 
 		// TODO implementare ClassCastException
 
-		// TODO null implementagtion
-		/*
-		 * if (o == null)
-		 * throw new NullPointerException();
-		 */
+		// null implementagtion
+		if (o == null)
+			throw new NullPointerException();
+
 		if (this.contains(o))
 			return false;
 		this.list.addElement(o);
@@ -82,11 +81,11 @@ public class ListAdapter implements HList {
 
 	@Override
 	public boolean contains(Object o) throws ClassCastException, NullPointerException {
-		// TODO null implementation
-		/*
-		 * if (o == null)
-		 * throw new NullPointerException();
-		 */
+		// null implementation
+
+		if (o == null)
+			throw new NullPointerException();
+
 		// TODO implementare ClassCastException
 
 		return this.list.contains(o);
@@ -198,19 +197,11 @@ public class ListAdapter implements HList {
 	public Object[] toArray(Object[] a) throws ArrayStoreException, NullPointerException {
 		if (a == null)
 			throw new NullPointerException();
-		int index = 0;
-		for (int i = 0; i < a.length; i++) {
-			if (a[i] == null) {
-				index = i;
-				break;
-			}
-		}
+		if (a.length < this.size())
+			return this.toArray();
 
-		Object[] elements = this.toArray();
-		if (index + elements.length >= a.length)
-			return elements;
-		for (int i = 0; i < elements.length; i++) {
-			a[i + index] = elements[i];
+		for (int i = 0; i < this.size(); i++) {
+			a[i] = this.get(i);
 		}
 		return a;
 	}
@@ -223,11 +214,11 @@ public class ListAdapter implements HList {
 
 		// TODO implementare ClassCastException
 
-		// TODO null implementation
-		/*
-		 * if (element == null)
-		 * throw new NullPointerException();
-		 */
+		// null implementation
+
+		if (element == null)
+			throw new NullPointerException();
+
 		if (index < 0 || index > this.size())
 			throw new IndexOutOfBoundsException();
 
@@ -332,7 +323,7 @@ public class ListAdapter implements HList {
 		if (fromIndex > toIndex || fromIndex < 0 || toIndex > this.size())
 			throw new IndexOutOfBoundsException();
 
-		HList sub = new ListAdapter(true);
+		HList sub = new ListAdapter(this.supportOptional);
 
 		for (int i = fromIndex; i < toIndex; i++) {
 			sub.add(this.get(i));
@@ -366,6 +357,16 @@ public class ListAdapter implements HList {
 		}
 
 		return n;
+	}
+
+	@Override
+	public String toString() {
+		String str = "List length: " + this.size() + "\nElements: ";
+		for (int i = 0; i < this.size(); i++) {
+			str += "\n\t" + this.get(i);
+		}
+
+		return str;
 	}
 
 }

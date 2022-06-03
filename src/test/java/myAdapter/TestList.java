@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class TestList {
 	HList l1 = null, l2 = null;
 	HListIterator li = null;
-	static String[] argv = { "pippo", "qui", "pluto", "paperino", "qui", "ciccio" };
+	static String[] argv = { "pippo", "qui", "pluto", "paperino", "ciccio" };
 
 	@Before
 	public void setup() {
@@ -32,25 +32,26 @@ public class TestList {
 		for (int i = 0; i < argv.length; i++) {
 			l1.add(argv[i]);
 		}
+		// l1 = 0,1,2,3,4
 		System.out.println("List.toString() ? " + l1);
 
 		int dl0, dl1, dli, dsl0, dsl1, dsli;
 
-		iterate(l1.hIterator());
+		iterate(l1.hIterator()); // iterate through the list
 		System.out.println(l1 + " " + l1.size());
-		dl0 = l1.size();
+		dl0 = l1.size(); // 5
 
-		l2 = l1.subHList(0, argv.length / 2);
-		dsl0 = l2.size();
+		l2 = l1.subHList(0, argv.length / 2); // from 0 to 2
+		dsl0 = l2.size(); // 2
 
 		l2.add("pipperissimo");
-		dli = l1.size();
-		dsli = l2.size();
+		dli = l1.size(); // 5
+		dsli = l2.size(); // 3
 
-		assertEquals("\n*** sublist add is NOT backed correctly ***\n", dli, dl0 + 1);
+		assertEquals("\n*** sublist add is NOT backed correctly ***\n", dli, dl0);
 		assertEquals("\n*** sublist add is NOT backed correctly ***\n", dsli, dsl0 + 1);
 
-		l2.remove("pipperissimo");
+		l2.remove("pipperissimo"); // 2
 		assertEquals("\n*** list remove is NOT backed correctly ***\n", l1.size(), dl0);
 		assertEquals("\n*** list remove is NOT backed correctly ***\n", l2.size(), dsl0);
 
@@ -58,8 +59,8 @@ public class TestList {
 		System.out.println(l2 + " " + l2.size());
 
 		l2.clear();
-		dl1 = l1.size();
-		dsl1 = l2.size();
+		dl1 = l1.size(); // 5
+		dsl1 = l2.size(); // 0
 		System.out.println(l1 + " " + l1.size());
 		iterate(l1.hIterator());
 		System.out.println(l2 + " " + l2.size());
@@ -68,7 +69,7 @@ public class TestList {
 		System.out.println(dl0 + " " + dl1 + " " + dsl0 + " " + dsl1);
 		assertEquals("\n*** sublist is NOT backed correctly ***\n", dsl0, (dl0 / 2));
 		assertEquals("\n*** sublist is NOT backed correctly ***\n", dsl1, 0);
-		assertEquals("\n*** sublist is NOT backed correctly ***\n", dl1, (dl0 - dsl0));
+		assertEquals("\n*** sublist is NOT backed correctly ***\n", dl1, (dl0 - dsl1));
 
 	}
 
@@ -88,13 +89,14 @@ public class TestList {
 		for (int i = 0; i < argv.length; i++) {
 			l1.add(argv[i]);
 		}
-		assertEquals("List add not working correctly", l1.size(), (prev + argv.length));
+		iterate(l1.hIterator());
+		assertEquals("List add not working correctly", l1.size(), (prev));
 		System.out.println(l1.size());
 		prev = l1.size();
 		for (int i = 0; i < argv.length; i++) {
 			l1.add(argv[i]);
 		}
-		assertEquals("List add not working correctly", l1.size(), (prev + argv.length));
+		assertEquals("List add not working correctly", l1.size(), prev);
 		System.out.println(l1.size());
 		iterate(l1.hIterator());
 
