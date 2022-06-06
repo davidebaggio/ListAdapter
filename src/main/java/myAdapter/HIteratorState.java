@@ -2,6 +2,8 @@ package myAdapter;
 
 /**
  * This ENUM contains the different states of an HListIterator
+ * 
+ * @author Davide Baggio
  */
 public enum HIteratorState {
 	/**

@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
 /**
  * An iterator over a collection. Iterator takes the place of Enumeration in the
  * Java collections framework.
+ * 
+ * @author Davide Baggio
  */
 public interface HIterator {
 

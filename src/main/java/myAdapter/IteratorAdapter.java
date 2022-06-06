@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
  * IteratorAdapter class that implements {@link myAdapter.HIterator} and
  * {@link myAdapter.HListIterator} interfaces.
  * 
+ * @author Davide Baggio
  */
 public class IteratorAdapter implements HListIterator {
 

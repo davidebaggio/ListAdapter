@@ -8,6 +8,8 @@ package myAdapter;
  * interface: it provides implementations of more specific subinterfaces like
  * Set and List. This interface is typically used to pass collections around and
  * manipulate them where maximum generality is desired.
+ * 
+ * @author Davide Baggio
  */
 public interface HCollection {
 

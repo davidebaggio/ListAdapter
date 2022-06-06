@@ -6,6 +6,8 @@ import java.util.NoSuchElementException;
 /**
  * Vetcor class adaptee of the {@link myAdapter.ListAdapter} class.
  * From CLDC 1.1
+ * 
+ * @author Davide Baggio
  */
 public class Vector {
 

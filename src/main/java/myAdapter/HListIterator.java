@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
  * next(). In a list of length n, there are n+1 valid index values, from 0 to n,
  * inclusive.
  * 
+ * @author Davide Baggio
  */
 public interface HListIterator extends HIterator {
 

@@ -10,6 +10,8 @@ package myAdapter;
  * {@link myAdapter.HList} interfaces
  * 
  * This list does not support insertion of null elements
+ * 
+ * @author Davide Baggio
  */
 public class ListAdapter implements HList {
 
