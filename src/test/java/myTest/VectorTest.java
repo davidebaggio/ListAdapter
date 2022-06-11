@@ -22,7 +22,15 @@ import myAdapter.*;
  * <br>
  * <br>
  * 
- * Pre-condition: J2RE 1.4.2 and JUnit 4.13.1 installed and added to the path.
+ * Pre-condition: J2RE 1.4.2 and JUnit 4.13.1 installed and added to the path. A
+ * new empty object of type ListAdapter must always be instantiated before
+ * each test. All execution variables are never in an uninitialized state (i.e.
+ * list = null) unless explicitly desired
+ * Methods that take as parameters classes that implement HCollection are passed
+ * suitable objects for this interface, therefore they do not throw the
+ * exception ClassCastException.
+ * All the elements contained in the list are known a priori in order to allow
+ * the verification after the invocation of the tested methods
  * <br>
  * <br>
  * 
@@ -42,11 +50,14 @@ import myAdapter.*;
  * <br>
  * <br>
  * 
- * Test Suite Execution Records:
+ * Test Suite Execution Records: each tested method is correct if all the tests
+ * that verify
+ * the correct functioning give positive results. Correct execution of the
+ * entire test method can then be considered the execution record
  * <br>
  * <br>
  * 
- * Execution Variables:
+ * Execution Variables: - Vector vec is the empty vector from the adaptee class.
  * 
  * @author Davide Baggio
  * @see myAdapter.Vector
@@ -55,15 +66,7 @@ public class VectorTest {
 	Vector vec;
 
 	/**
-	 * Method for initializing execution variables before tests
-	 * <p>
-	 * A new and empty Collection is created before each test method,
-	 * in this way the collection on which the various tested methods
-	 * are invoked always has a valid state
-	 * <br>
-	 * <br>
-	 * Preconditions: The constructor successfully instantiates a new object
-	 * of the ListAdapter class
+	 * setup before each test.
 	 */
 	@Before
 	public void setup() {
@@ -71,8 +74,7 @@ public class VectorTest {
 	}
 
 	/**
-	 * Method for deleting all the operation on the vector in order to compute
-	 * another test.
+	 * cleanup after each test
 	 */
 	@After
 	public void clean() {
@@ -221,7 +223,7 @@ public class VectorTest {
 		vec.copyInto(arr);
 		for (int i = 0; i < arr.length; i++) {
 			assertEquals(vec.elementAt(i), arr[i]);
-			System.out.print(arr[i] + " ");
+			// System.out.print(arr[i] + " ");
 		}
 	}
 

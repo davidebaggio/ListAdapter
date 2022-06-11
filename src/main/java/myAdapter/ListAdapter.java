@@ -183,8 +183,9 @@ public class ListAdapter implements HList {
 
 		int n = this.size();
 		for (Object o : elements) {
-			if (this.list.indexOf(o) >= 0)
+			while (this.contains(o)) {
 				this.remove(o);
+			}
 		}
 		if (n != this.size())
 			return true;
@@ -382,7 +383,13 @@ public class ListAdapter implements HList {
 		return true;
 	}
 
-	// s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
+	//
+	/**
+	 * Hash code for the ListAdapter. This is the formula in order to calculate the
+	 * hash values: s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
+	 * 
+	 * @return - the has value.
+	 */
 	@Override
 	public int hashCode() {
 		Object[] arr = this.toArray();

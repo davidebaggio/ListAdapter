@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
  * From CLDC 1.1
  * 
  * @author Davide Baggio
+ * 
  */
 public class Vector {
 

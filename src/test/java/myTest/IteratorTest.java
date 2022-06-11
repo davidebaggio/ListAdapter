@@ -12,19 +12,56 @@ import org.junit.*;
 import myAdapter.*;
 
 /**
- * Summary:
+ * Summary: This test suite provides tests for the
+ * {@link myAdapter.IteratorAdapter}
+ * class methods.
  * <br>
- * Test Suite Design:
  * <br>
- * Pre-condition:
+ * Test Suite Design: The design of this thest suite is all about testing each
+ * method of the Vector class. The reason is to isolate every type of operation
+ * in order to validate each functionality.
  * <br>
- * Post-Condition:
+ * <br>
+ * Pre-condition: J2RE 1.4.2 and JUnit 4.13.1 installed and added to the path. A
+ * new empty object of type ListAdapter must always be instantiated before
+ * each test. All execution variables are never in an uninitialized state (i.e.
+ * list = null) unless explicitly desired. Methods that take as parameters
+ * classes that implement HCollection are passed
+ * suitable objects for this interface, therefore they do not throw the
+ * exception ClassCastException.
+ * All the elements contained in the list are known a priori in order to allow
+ * the verification after the invocation of the tested methods
+ * <br>
+ * <br>
+ * Post-Condition: the methods implemented must always modify the lists so that
+ * the elements contained are exactly those expected starting from their manual
+ * insertion and have to provide a positive outcome.
+ * <br>
  * <br>
  * Test Cases:
+ * {@link #testHasNext()}, {@link #testAdd()},
+ * {@link #testHasPrevious()}, {@link #testNext()}, {@link #testNextIndex()},
+ * {@link #testPrevious()}, {@link #testPreviousIndex()}, {@link #testRemove()},
+ * {@link #testSet()}.
  * <br>
- * Test Suite Execution Records:
  * <br>
- * Execution Variables:
+ * Test Suite Execution Records: each tested method is correct if all the tests
+ * that verify
+ * the correct functioning give positive results. Correct execution of the
+ * entire test method can then be considered the execution record
+ * <br>
+ * <br>
+ * Execution Variables: ListAdapter list (supports optional operations), uList
+ * (doesn't support optional operations).
+ * <br>
+ * HListIterator iter (supports optional operations), uIter (doesn't support
+ * optional operations).
+ * <br>
+ * <br>
+ * 
+ * @author Davide Baggio
+ * @see myAdapter.HIterator
+ * @see myAdapter.HListIterator
  */
 public class IteratorTest {
 
@@ -33,6 +70,9 @@ public class IteratorTest {
 	HListIterator iter;
 	HListIterator uIter;
 
+	/**
+	 * setup before each test.
+	 */
 	@Before
 	public void setup() {
 		list = new ListAdapter(true);
@@ -42,6 +82,9 @@ public class IteratorTest {
 		uIter = uList.hListIterator();
 	}
 
+	/**
+	 * cleanup after each test
+	 */
 	@After
 	public void clean() {
 		list = null;
