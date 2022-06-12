@@ -16,7 +16,7 @@ import java.util.*;
  * @version Harmcrest: 1.3
  * @version JVM from JME CLDC 1.1
  *
- * @author Alessandro Marcassa
+ * @author Davide Baggio
  */
 public class TestRunner {
 	private static int totalTests = 0;

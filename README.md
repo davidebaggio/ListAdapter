@@ -1,6 +1,6 @@
 # List Adapter
 
-This is a project that contains a List Adapter made in java. It uses the Vector class from [CLDC 1.1](https://docs.oracle.com/javame/config/cldc/ref-impl/cldc1.1/jsr139/index.html "CLDC1.1") as the adaptee of this class. The implementation allows function from the [J2RE 1.4.2](https://www2.cs.duke.edu/csed/java/jdk1.4.2/docs/api/index.html "J2RE 1.4.2") only.
+This is a project that contains a List Adapter made in java. It uses the Vector class from [CLDC 1.1](https://docs.oracle.com/javame/config/cldc/ref-impl/cldc1.1/jsr139/index.html "CLDC1.1") as the adaptee of this class. The implementation allows function from the [J2RE 1.4.2](https://www2.cs.duke.edu/csed/java/jdk1.4.2/docs/api/index.html "J2RE 1.4.2") only. The only precondition is that for the compilation of the package JDK 18 is required. Mind that it has to be added to the path.
 
 ---
 
@@ -27,7 +27,7 @@ Script in the file:
 ```bash
 apache-maven-3.8.5/bin/mvn.cmd clean
 apache-maven-3.8.5/bin/mvn.cmd compiler:compile
-apache-maven-3.8.5/bin/mvn.cmd mopiler:testCompile
+apache-maven-3.8.5/bin/mvn.cmd compiler:testCompile
 ```
 
 .classes files will be created in the target folder.
@@ -39,7 +39,7 @@ Script in the file:
 apache-maven-3.8.5/bin/mvn.cmd package
 ```
 
-.jar file will be created in the target folder.
+.jar file will be created in the target folder and test are run.
 
 In order to create the javadoc documentation open `javadoc.sh`.
 Script in the file:
@@ -49,10 +49,18 @@ apache-maven-3.8.5/bin/mvn.cmd javadoc:javadoc
 apache-maven-3.8.5/bin/mvn.cmd javadoc:test-javadoc
 ```
 
-apidocs and testapidocs javadocs will be created in the documentation folder. Just open the index.html file in those folder and you will be able to access the documentation.
+apidocs and testapidocs will be created in the documentation folder. If some errors occure during the creation of javadocs, don't mind them beacuse those are formatting errors in html. Just open the index.html file in those folder and you will be able to access the documentation.
 
 If you ever want to clean the project, just type `apache-maven-3.8.5/bin/mvn.cmd clean`.
 
 In order to run only the tests in myTest package type `apache-maven-3.8.5/bin/mvn.cmd test`.
 
 In order to run the single TestRunner file type `apache-maven-3.8.5/bin/mvn.cmd -e exec:java -Dexec.mainClass="myTest.TestRunner" -Dexec.classpathScope="test"` which looks into myTest package and run the main() method.
+
+---
+
+### Information about the Adapter
+
+This Adapter is implementing all possible function from the J2RE 1.4.2 util required interfaces. Also optional operation are included; example: NullPointerException which is thrown when a parameter of a method is null. This means that this Adapter doesn't allow to add null Object. ClassCastException is not implemented because as all the elements are passed in the List, they get cast in Object which is the root of the elements.
+
+The Adapter allows to work with Supported operation if desired. When ever a ListAdapter constructor is called one parameter has to be a boolean which indicates the needs of an Adapter to use Supported operation such as the add method. Iterator of this ListAdapter inherits this value. By the way, everything is properly tested in myTest package.
