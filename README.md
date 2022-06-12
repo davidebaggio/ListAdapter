@@ -22,7 +22,7 @@ This project is run through [maven](https://maven.apache.org/download.cgi "Maven
 ### LINUX ONLY
 
 Remember that if you get the "permission denied" error while trying to run maven or different bash files you have to change the program mode.
-Type: `chmod +x {scriptName}`.
+Type: `chmod +x {scriptName}` and re-run through shell.
 
 ---
 
