@@ -25,9 +25,9 @@ In order to compile both of the packages open `compiler.sh`.
 Script in the file:
 
 ```bash
-apache-maven-3.8.5/bin/mvn.cmd clean
-apache-maven-3.8.5/bin/mvn.cmd compiler:compile
-apache-maven-3.8.5/bin/mvn.cmd compiler:testCompile
+apache-maven-3.8.5/bin/mvn clean
+apache-maven-3.8.5/bin/mvn compiler:compile
+apache-maven-3.8.5/bin/mvn compiler:testCompile
 ```
 
 .classes files will be created in the target folder.
@@ -36,7 +36,7 @@ In order to build the project open `builder.sh`.
 Script in the file:
 
 ```bash
-apache-maven-3.8.5/bin/mvn.cmd package
+apache-maven-3.8.5/bin/mvn package
 ```
 
 .jar file will be created in the target folder and test are run.
@@ -45,17 +45,17 @@ In order to create the javadoc documentation open `javadoc.sh`.
 Script in the file:
 
 ```bash
-apache-maven-3.8.5/bin/mvn.cmd javadoc:javadoc
-apache-maven-3.8.5/bin/mvn.cmd javadoc:test-javadoc
+apache-maven-3.8.5/bin/mvn javadoc:javadoc
+apache-maven-3.8.5/bin/mvn javadoc:test-javadocs
 ```
 
 apidocs and testapidocs will be created in the documentation folder. If some errors occure during the creation of javadocs, don't mind them beacuse those are formatting errors in html. Just open the index.html file in those folder and you will be able to access the documentation.
 
-If you ever want to clean the project, just type `apache-maven-3.8.5/bin/mvn.cmd clean`.
+If you ever want to clean the project, just type `apache-maven-3.8.5/bin/mvn clean`.
 
-In order to run only the tests in myTest package type `apache-maven-3.8.5/bin/mvn.cmd test`.
+In order to run only the tests in myTest package type `apache-maven-3.8.5/bin/mvn test`.
 
-In order to run the single TestRunner file type `apache-maven-3.8.5/bin/mvn.cmd -e exec:java -Dexec.mainClass="myTest.TestRunner" -Dexec.classpathScope="test"` which looks into myTest package and run the main() method.
+In order to run the single TestRunner file type `apache-maven-3.8.5/bin/mvn -e exec:java -Dexec.mainClass="myTest.TestRunner" -Dexec.classpathScope="test"` which looks into myTest package and run the main() method.
 
 ---
 
